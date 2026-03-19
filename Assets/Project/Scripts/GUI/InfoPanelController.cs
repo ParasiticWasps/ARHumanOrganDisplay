@@ -8,7 +8,7 @@ public class InfoPanelController : MonoBehaviour
 
     public void Start()
     {
-        CloseInfoPanel();
+        //CloseInfoPanel();
     }
 
     public void CloseInfoPanel()
@@ -21,10 +21,5 @@ public class InfoPanelController : MonoBehaviour
     {
         InfoPanelInstance.gameObject.SetActive(true);
         InfoPanelInstance.SelectedInfoButton(InfoPanelInstance.GetCurrSelectedButton());
-    }
-
-    public void PlayAudio()
-    {
-        AudioManager.Get().Play(InfoPanelInstance.GetCurrSelectedButton().GetCurrInfo().Clip);
     }
 }

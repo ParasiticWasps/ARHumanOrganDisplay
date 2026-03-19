@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+  <Tracking>
+    <ImageTarget name="Xin" size="1.000000 0.577324" />
+    <ImageTarget name="Fei" size="1.000000 0.564152" />
+  </Tracking>
+</QCARConfig>

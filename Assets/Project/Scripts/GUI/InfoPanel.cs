@@ -9,7 +9,7 @@ public class InfoPanel : MonoBehaviour
     [SerializeField] private List<InfoButton> m_InfoButtonBuffer = new List<InfoButton>();
 
     // UI Components
-    public Image ContentImage;
+    //public Image ContentImage;
 
     [HideInInspector] public InfoButton CurrSelectedButton;
 
@@ -24,8 +24,8 @@ public class InfoPanel : MonoBehaviour
 
     public void Start()
     {
-        if (m_InfoButtonBuffer.Count > 0)
-            CurrSelectedButton = m_InfoButtonBuffer[0];
+        //if (m_InfoButtonBuffer.Count > 0)
+        //    CurrSelectedButton = m_InfoButtonBuffer[0];
     }
 
     public void SelectedInfoButton(InfoButton button)
@@ -39,9 +39,9 @@ public class InfoPanel : MonoBehaviour
         }
         CurrSelectedButton = button;
         button.transform.localScale = Vector3.one * 1.2f;
-
-        InfoStruct infoStruct = button.GetCurrInfo();
-        ContentImage.sprite = infoStruct.Image;
+        AudioManager.Get().Play(button.clip);
+        //InfoStruct infoStruct = button.GetCurrInfo();
+        //ContentImage.sprite = infoStruct.Image;
         //AudioManager.Get().Play(button.InfoAudio);
     }
 
@@ -50,26 +50,26 @@ public class InfoPanel : MonoBehaviour
         return CurrSelectedButton;
     }
 
-    public void ClickLeftButton()
-    {
-        // 如果InfoButton中只存储了一张图片那么不需要然Audio暂停
-        Action audioAction = CurrSelectedButton.m_InfoBuffer.Count == 1 ? null : () => AudioManager.Get().Pause();
-        audioAction?.Invoke();
+    //public void ClickLeftButton()
+    //{
+    //    // 如果InfoButton中只存储了一张图片那么不需要然Audio暂停
+    //    Action audioAction = CurrSelectedButton.m_InfoBuffer.Count == 1 ? null : () => AudioManager.Get().Pause();
+    //    audioAction?.Invoke();
 
-        CurrSelectedButton.PreviInfo();
+    //    CurrSelectedButton.PreviInfo();
 
-        InfoStruct infoStruct = CurrSelectedButton.GetCurrInfo();
-        ContentImage.sprite = infoStruct.Image;
-    }
+    //    InfoStruct infoStruct = CurrSelectedButton.GetCurrInfo();
+    //    ContentImage.sprite = infoStruct.Image;
+    //}
 
-    public void ClickRightButton()
-    { 
-        Action audioAction = CurrSelectedButton.m_InfoBuffer.Count == 1 ? null : () => AudioManager.Get().Pause();
-        audioAction?.Invoke();
+    //public void ClickRightButton()
+    //{ 
+    //    Action audioAction = CurrSelectedButton.m_InfoBuffer.Count == 1 ? null : () => AudioManager.Get().Pause();
+    //    audioAction?.Invoke();
 
-        CurrSelectedButton.NextInfo();
+    //    CurrSelectedButton.NextInfo();
 
-        InfoStruct infoStruct = CurrSelectedButton.GetCurrInfo();
-        ContentImage.sprite = infoStruct.Image;
-    }
+    //    InfoStruct infoStruct = CurrSelectedButton.GetCurrInfo();
+    //    ContentImage.sprite = infoStruct.Image;
+    //}
 }

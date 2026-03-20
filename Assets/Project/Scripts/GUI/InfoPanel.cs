@@ -11,6 +11,10 @@ public class InfoPanel : MonoBehaviour
     // UI Components
     //public Image ContentImage;
 
+    [SerializeField] private VideoGUI videoGUI;
+
+    [SerializeField] private Button videoButton;
+
     [HideInInspector] public InfoButton CurrSelectedButton;
 
     public void Awake()
@@ -20,6 +24,8 @@ public class InfoPanel : MonoBehaviour
             int index = i;
             m_InfoButtonBuffer[index].OnButtonClick += SelectedInfoButton;
         }
+
+        videoButton.onClick.AddListener(OpenVideoGUI);
     }
 
     public void Start()
@@ -35,14 +41,19 @@ public class InfoPanel : MonoBehaviour
         AudioManager.Get().Pause();
         for (int i = 0; i < m_InfoButtonBuffer.Count; i++)
         {
-            m_InfoButtonBuffer[i].transform.localScale = Vector3.one;
+            m_InfoButtonBuffer[i].transform.localScale = Vector3.one * 1.5f;
         }
         CurrSelectedButton = button;
-        button.transform.localScale = Vector3.one * 1.2f;
+        button.transform.localScale = Vector3.one * 1.8f;
         AudioManager.Get().Play(button.clip);
         //InfoStruct infoStruct = button.GetCurrInfo();
         //ContentImage.sprite = infoStruct.Image;
         //AudioManager.Get().Play(button.InfoAudio);
+    }
+
+    private void OpenVideoGUI()
+    {
+        videoGUI.SetActive(true);
     }
 
     public InfoButton GetCurrSelectedButton()
